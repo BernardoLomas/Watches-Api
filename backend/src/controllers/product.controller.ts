@@ -3,7 +3,14 @@ import { ProductService } from '../services/product.service'
 
 export class ProductController {
     static async list(req: Request, res: Response){
-        const products = await ProductService.list()
-        return res.json(products)
+        try{
+            const products = await ProductService.list()
+            return res.json(products)
+        } catch (error: any) {
+            console.error(error)
+            return res.status(500).json({
+                message: 'Failed to fetch products'
+            })
+        }
     }
 }

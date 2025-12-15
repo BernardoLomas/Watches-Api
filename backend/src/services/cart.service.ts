@@ -25,4 +25,22 @@ export class CartService {
             subtotal: product.price * item.quantity
         }
     }
+
+    static async updateItem(item: CartItemDTO){
+        this.validateQuantity(item.quantity)
+
+        const product = await prisma.product.findUnique({
+            where: { id: item.productId }
+        })
+
+        if(!product){
+            throw new Error('Product not found!')
+        }
+
+        return {
+            product,
+            quantity: item.quantity,
+            subtotal: product.price * item.quantity
+        }
+    }
 }

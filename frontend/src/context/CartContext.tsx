@@ -12,6 +12,7 @@ interface CartItem {
 interface CartContextData {
   items: CartItem[]
   addToCart: (product: Product) => Promise<void>
+  checkout: () => Promise<void>
 }
 
 const CartContext = createContext<CartContextData | undefined>(undefined)
@@ -28,8 +29,19 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setItems(prev => [...prev, response.data])
   }
 
+  async function checkout() {
+    await api.post('/checkout', {
+      items: items.map(item => ({
+        productId: item.product.id,
+        quantity: item.quantity
+      }))
+    })
+
+    setItems([])
+  }
+
   return (
-    <CartContext.Provider value={{ items, addToCart }}>
+    <CartContext.Provider value={{ items, addToCart, checkout }}>
       {children}
     </CartContext.Provider>
   )

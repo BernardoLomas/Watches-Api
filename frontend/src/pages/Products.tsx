@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import { api } from '../api/http'
 import type { Product } from '../types/product'
+import ProductCard from '../components/ProductCard'
+import CartSummary from '../components/CartSummary'
+
 
 export default function Products() {
     const [products, setProducts] = useState<Product[]>([])
@@ -41,11 +44,8 @@ export default function Products() {
             <h1>Products</h1>
 
             <ul style={{ marginTop: 16 }}>
-                {products.map((p) => (
-                    <li key={p.id} style={{ marginBottom: 12}}>
-                        <strong>{p.name}</strong> - R$ {p.price.toFixed(2)}
-                        <div>{p.description}</div>
-                    </li>
+                {products.map(product => (
+                    <ProductCard key={product.id} product ={product} />
                 ))}
             </ul>
         </div>

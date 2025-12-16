@@ -37,23 +37,26 @@ export default function Products() {
     };
   }, []);
 
-  if (view === "checkout") return <Checkout onBack={() => setView("products")} />;
+  if (view === "checkout")
+    return <Checkout onBack={() => setView("products")} />;
   if (loading) return <div style={{ padding: 24 }}>Loading...</div>;
   if (error) return <div style={{ padding: 24 }}>Error: {error}</div>;
 
   return (
-    <div style={{ padding: 24 }}>
-      <h1>Products</h1>
+    <div className="container">
+      <div style={{ padding: 24 }}>
+        <h1>Products</h1>
 
-      <button onClick={() => setView('checkout')}>Go to checkout</button>
+        <button onClick={() => setView("checkout")}>Go to checkout</button>
 
-      <div style={{ marginTop: 16 }}>
-        {products.map(product => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+        <div style={{ marginTop: 16 }}>
+          {products.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </div>
+
+        <CartSummary />
       </div>
-
-      <CartSummary />
     </div>
   );
 }

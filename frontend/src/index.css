@@ -6,4 +6,74 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
+    background-color: #f5f6fa;
+    color: #2f3640;
+}
+
+button {
+    cursor: pointer;
+    border: none;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 32px 16px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 5px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.card h3 {
+    margin-bottom: 4px;
+}
+
+.card p {
+    font-size: 14px;
+    color: #636e72;
+}
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.card-footer button {
+    background-color: #407BFF;
+    color: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+}
+
+.cart {
+    background: #fff;
+    margin-top: 32px;
+    padding: 16px;
+    border-radius: 8px;
+}
+
+.cart h2 {
+    margin-bottom: 12px;
+}
+
+.cart-item {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.checkout-button {
+    margin-top: 16px;
+    background: #44bd32;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 6px;
 }

@@ -1,9 +1,9 @@
-import { useCart } from '../context/CartContext'
+import { useCart } from "../context/CartContext";
 
 export default function CartSummary() {
-  const { items } = useCart()
+  const { items } = useCart();
 
-  const total = items.reduce((sum, item) => sum + item.subtotal, 0)
+  const total = items.reduce((sum, item) => sum + item.subtotal, 0);
 
   return (
     <div style={{ marginTop: 24 }}>
@@ -12,12 +12,13 @@ export default function CartSummary() {
       {items.length === 0 && <p>Cart is empty</p>}
 
       {items.map((item, index) => (
-        <div key={index}>
-          {item.product.name} x {item.quantity}
+        <div className="cart-item" key={index}>
+          <span>{item.product.name}</span>
+          <span>x {item.quantity}</span>
         </div>
       ))}
 
       <strong>Total: R$ {total.toFixed(2)}</strong>
     </div>
-  )
+  );
 }

@@ -6,9 +6,10 @@ async function main(){
     await prisma.product.createMany({
         data: [
             {
-                name: 'Nvidia RTX 5060Ti',
-                description: 'DDR7 16GB GALAX',
-                price: 3500.00
+                name: 'Audemars Piguet Royal Oak SelfWinding',
+                description: '41mm 15500 Silver Dial',
+                price: 1200500,
+                imageUrl:'https://monochrome-watches.com/app/uploads/2020/05/Audemars-Piguet-Royal-Oak-Selfwinding-41mm-15500ST-Silver-Dial-2.jpg'
             },
             {
                 name: 'Ryzen 7 5700x',

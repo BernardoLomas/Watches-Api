@@ -10,6 +10,20 @@ export default function ProductCard({ product }: Props) {
 
   return (
     <div className="card">
+      {product.imageUrl && (
+        <img
+          src={product.imageUrl}
+          alt={product.name}
+          style={{
+            width: "100%",
+            height: 160,
+            objectFit: "cover",
+            borderRadius: 8,
+            marginBottom: 8,
+          }}
+        />
+      )}
+
       <h3>{product.name}</h3>
       <p>{product.description}</p>
 

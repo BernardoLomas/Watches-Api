@@ -1,6 +1,10 @@
 import { useCart } from '../context/CartContext'
 
-export default function Checkout() {
+interface Props {
+    onBack: () => void
+}
+
+export default function Checkout({ onBack }: Props) {
     const { items, checkout } = useCart()
 
     const total = items.reduce((sum, item) => sum + item.subtotal, 0)
@@ -8,10 +12,16 @@ export default function Checkout() {
     async function handleCheckout() {
         await checkout()
         alert('Order succesfully placed!')
+        onBack()
     }
 
     if(items.length === 0) {
-        return <p style={{ padding: 24 }}>Cart is empty!</p>
+        return (
+            <div style={{ padding: 24 }}>
+                <p>Cart is empty!</p>
+                <button onClick={onBack}>Back</button>
+            </div>
+        )
     }
 
     return (
@@ -28,6 +38,7 @@ export default function Checkout() {
 
             <div style={{ marginTop: 16 }}>
                 <button onClick={handleCheckout}>Finish order</button>
+                <button onClick={onBack} style={{ marginLeft: 8 }}>Back</button>
             </div>
         </div>
     )

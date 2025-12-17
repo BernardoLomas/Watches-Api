@@ -5,6 +5,8 @@ import { useCart } from "../context/CartContext";
 import ProductCard from "../components/ProductCard";
 import Checkout from "./Checkout";
 import { useToast } from "../context/ToastContext";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 
 export default function Products() {
@@ -56,12 +58,8 @@ export default function Products() {
 
   return (
     <div className="container">
-      <nav className="navbar">
-        <strong>Bernardo Lomas Watches</strong>
-        <button className="cart-button" onClick={() => setView("checkout")}>
-          Cart ({items.length})
-        </button>
-      </nav>
+      <Navbar />
+
       <header className="filters-bar">
         <div className="filters">
           {/*Lembrar de coloadar os filtros de pesquisa aq depois*/}
@@ -79,11 +77,8 @@ export default function Products() {
         <span>Page {currentPage} of {totalPages}</span>
         <button disabled={currentPage === totalPages} onClick={() => setCurrentPage(prev => prev + 1)}>Next</button>
       </div>
-
-      <footer className="footer">
-        <p>Bernardo Lomas Watches</p>
-        <small> React - NodeJs - Prisma - SQLite</small>
-      </footer>
+      
+      <Footer />
     </div>
   );
 }

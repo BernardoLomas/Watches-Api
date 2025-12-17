@@ -24,7 +24,7 @@ export default function Checkout({ onBack }: Props) {
 
   if (items.length === 0) {
     return (
-      <div className="container">
+      <div className="checkout-container">
         <h1>Checkout</h1>
         <p>Your cart is empty</p>
         <button className="back-btn" onClick={onBack}>

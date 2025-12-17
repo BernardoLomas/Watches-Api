@@ -2,6 +2,7 @@ import { createContext, useContext, useState } from "react";
 import type { ReactNode } from "react";
 import type { Product } from "../types/product";
 import { api } from "../api/http";
+import { useToast } from "./ToastContext";
 
 interface CartItem {
   product: Product;
@@ -20,14 +21,20 @@ const CartContext = createContext<CartContextData | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
   const [items, setItems] = useState<CartItem[]>([]);
+  const { showToast } = useToast();
 
   async function addToCart(product: Product) {
-    const response = await api.post("/cart/items", {
-      productId: product.id,
-      quantity: 1,
-    });
+    try{
+      const response = await api.post("/cart/items", {
+        productId: product.id,
+        quantity: 1,
+      });
 
-    setItems((prev) => [...prev, response.data]);
+      setItems((prev) => [...prev, response.data]);
+      showToast("Item added to cart!", "success");
+    } catch {
+      showToast("Failed to add item into cart!", "error");
+    }
   }
 
   async function checkout() {
@@ -43,6 +50,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
   function removeFromCart(productId: number) {
     setItems((prev) => prev.filter((item) => item.product.id !== productId));
+    showToast("Item removed from cart!", "success");
   }
 
   return (

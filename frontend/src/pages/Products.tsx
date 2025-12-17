@@ -4,6 +4,8 @@ import type { Product } from "../types/product";
 import { useCart } from "../context/CartContext";
 import ProductCard from "../components/ProductCard";
 import Checkout from "./Checkout";
+import { useToast } from "../context/ToastContext";
+
 
 export default function Products() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -11,6 +13,7 @@ export default function Products() {
   const [error, setError] = useState<string | null>(null);
   const [view, setView] = useState<"products" | "checkout">("products");
   const { items } = useCart();
+  const { showToast } = useToast();
 
   useEffect(() => {
     let isMounted = true;
@@ -24,7 +27,8 @@ export default function Products() {
         if (isMounted) setProducts(response.data);
       } catch (erro: any) {
         if (isMounted) {
-          setError(erro?.message ?? "Failed to load products");
+          setError(erro?.message ?? "Failed to load products!");
+          showToast("Failed to load products!", "error")
         }
       } finally {
         if (isMounted) setLoading(false);

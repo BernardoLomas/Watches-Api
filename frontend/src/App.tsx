@@ -1,11 +1,14 @@
 import Products from './pages/Products'
 import { CartProvider } from './context/CartContext'
+import { ToastProvider } from './context/ToastContext'
 
 function App() {
   return (
-    <CartProvider>
-      <Products />
-    </CartProvider>
+    <ToastProvider>
+      <CartProvider>
+        <Products />
+      </CartProvider>
+    </ToastProvider>
   )
 }
 

@@ -1,5 +1,6 @@
 import { useCart } from "../context/CartContext";
 import CartSummary from "../components/CartSummary";
+import { useToast } from "../context/ToastContext";
 
 interface Props {
   onBack: () => void;
@@ -7,14 +8,15 @@ interface Props {
 
 export default function Checkout({ onBack }: Props) {
   const { checkout, items } = useCart();
+  const { showToast } = useToast();
 
   async function handleCheckout() {
     try {
       await checkout();
-      alert("Order succesfully placed!");
+      showToast("Order placed successfully!", "success");
       onBack();
     } catch {
-      alert("Failed to place order!");
+      showToast("Checkout failed!", "error");
     }
   }
 

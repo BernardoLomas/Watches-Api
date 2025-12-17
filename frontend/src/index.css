@@ -238,3 +238,37 @@ button {
   border-top: 1px solid #eee;
   font-size: 16px;
 }
+
+
+/*Css do toast*/
+
+.toast {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    padding: 12px 16px;
+    border-radius: 6px;
+    color: #fff;
+    font-size: 14px;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+}
+
+.toast.success {
+    background: #44bd32;
+}
+
+.toast.error {
+    background: #e84118;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        oapcity: 1;
+        transform: translateY(0);
+    }
+}

@@ -58,7 +58,7 @@ export default function Products() {
 
   return (
     <div className="container">
-      <Navbar />
+      <Navbar onCartClick={() => setView("checkout")} />
 
       <header className="filters-bar">
         <div className="filters">

@@ -27,24 +27,31 @@ export default function Checkout({ onBack }: Props) {
       <div className="container">
         <h1>Checkout</h1>
         <p>Your cart is empty</p>
-        <button className="back-btn" onClick={onBack}>Back to products</button>
+        <button className="back-btn" onClick={onBack}>
+          Back to products
+        </button>
       </div>
     );
   }
 
   return (
-    <div className="container">
+    <>
       <Navbar />
-      <h1>Checkout</h1>
+      <main className="container">
+        <h1>Checkout</h1>
 
-      <CartSummary showRemove />
+        <CartSummary showRemove />
 
-      <div className="checkout-actions">
-        <button className="finish-btn" onClick={handleCheckout}>Confirm Order</button>
-        <button className="back-btn" onClick={onBack}>Back</button>
-      </div>
-
+        <div className="checkout-actions">
+          <button className="finish-btn" onClick={handleCheckout}>
+            Confirm Order
+          </button>
+          <button className="back-btn" onClick={onBack}>
+            Back
+          </button>
+        </div>
+      </main>
       <Footer />
-    </div>
+    </>
   );
 }

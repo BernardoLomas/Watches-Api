@@ -8,7 +8,6 @@ import { useToast } from "../context/ToastContext";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
-
 export default function Products() {
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
@@ -32,7 +31,7 @@ export default function Products() {
       } catch (erro: any) {
         if (isMounted) {
           setError(erro?.message ?? "Failed to load products!");
-          showToast("Failed to load products!", "error")
+          showToast("Failed to load products!", "error");
         }
       } finally {
         if (isMounted) setLoading(false);
@@ -46,7 +45,8 @@ export default function Products() {
     };
   }, []);
 
-  if (view === "checkout") return <Checkout onBack={() => setView("products")} />;
+  if (view === "checkout")
+    return <Checkout onBack={() => setView("products")} />;
   if (loading) return <div style={{ padding: 24 }}>Loading...</div>;
   if (error) return <div style={{ padding: 24 }}>Error: {error}</div>;
 
@@ -57,28 +57,41 @@ export default function Products() {
   );
 
   return (
-    <div className="container">
+    <>
       <Navbar onCartClick={() => setView("checkout")} />
+      <main className="container">
+        <header className="filters-bar">
+          <div className="filters">
+            {/*Lembrar de coloadar os filtros de pesquisa aq depois*/}
+          </div>
+        </header>
 
-      <header className="filters-bar">
-        <div className="filters">
-          {/*Lembrar de coloadar os filtros de pesquisa aq depois*/}
+        <section className="products-grid">
+          {paginatedProducts.map((product) => (
+            <ProductCard key={product.id} product={product} />
+          ))}
+        </section>
+
+        <div className="pagination">
+          <button
+            disabled={currentPage === 1}
+            onClick={() => setCurrentPage((prev) => prev - 1)}
+          >
+            Previous
+          </button>
+          <span>
+            Page {currentPage} of {totalPages}
+          </span>
+          <button
+            disabled={currentPage === totalPages}
+            onClick={() => setCurrentPage((prev) => prev + 1)}
+          >
+            Next
+          </button>
         </div>
-      </header>
+      </main>
 
-      <section className="products-grid">
-        {paginatedProducts.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </section>
-
-      <div className="pagination">
-        <button disabled={currentPage === 1} onClick={() => setCurrentPage(prev => prev - 1)}>Previous</button>
-        <span>Page {currentPage} of {totalPages}</span>
-        <button disabled={currentPage === totalPages} onClick={() => setCurrentPage(prev => prev + 1)}>Next</button>
-      </div>
-      
       <Footer />
-    </div>
+    </>
   );
 }

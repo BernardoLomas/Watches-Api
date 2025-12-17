@@ -19,21 +19,25 @@ button {
 /*Container da home*/
 .container {
     width: 100%;
+    max-width: 1400px;
     margin:  0 auto;
     padding: 24px 16px;
 }
 
 .navbar {
+    width: 100%;
+    height: 100px;
     background: #2d3436;
     color: #fff;
     padding: 16px 32px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.12);
 }
 
 .navbar-cart {
-    background: black;
+    background: #467b52;
     color: #fff;
     padding: 6px 14px;
     border-radius: 6px;
@@ -111,10 +115,11 @@ button {
 }
 
 .footer {
-    margin-top: 48px;
-    padding: 24px;
-    text-align: center;
-    color: #636e72;
+  width: 100%;
+  padding: 24px 32px;
+  text-align: center;
+  color: #636e72;
+  border-top: 1px solid #eaeaea;
 }
 
 /*Responsividade*/

@@ -15,6 +15,20 @@ button {
     border: none;
 }
 
+html, body, #root {
+  height: 100%;
+  margin: 0;
+}
+
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+}
 
 /*Container da home*/
 .container {
@@ -46,8 +60,8 @@ h1 {
 }
 
 .navbar-brand img {
-    width: 80px;
-    height: 60px;
+    width: 100px;
+    height: 80px;
 }
 
 .navbar-cart {
@@ -133,7 +147,9 @@ h1 {
 .footer {
   width: 100%;
   padding: 40px 32px;
-  color: #636e72;
+  margin-bottom: 0;
+  color: #4d5456;
+  background-color: #141414;
 }
 
 .footer-content {

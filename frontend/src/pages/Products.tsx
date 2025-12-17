@@ -57,41 +57,43 @@ export default function Products() {
   );
 
   return (
-    <>
+    <div className="app-shell">
       <Navbar onCartClick={() => setView("checkout")} />
-      <main className="container">
-        <header className="filters-bar">
-          <div className="filters">
-            {/*Lembrar de coloadar os filtros de pesquisa aq depois*/}
+      <main className="app-main">
+        <div className="container">
+          <header className="filters-bar">
+            <div className="filters">
+              {/*Lembrar de coloadar os filtros de pesquisa aq depois*/}
+            </div>
+          </header>
+
+          <section className="products-grid">
+            {paginatedProducts.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </section>
+
+          <div className="pagination">
+            <button
+              disabled={currentPage === 1}
+              onClick={() => setCurrentPage((prev) => prev - 1)}
+            >
+              Prev
+            </button>
+            <span>
+              Page {currentPage} of {totalPages}
+            </span>
+            <button
+              disabled={currentPage === totalPages}
+              onClick={() => setCurrentPage((prev) => prev + 1)}
+            >
+              Next
+            </button>
           </div>
-        </header>
-
-        <section className="products-grid">
-          {paginatedProducts.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
-        </section>
-
-        <div className="pagination">
-          <button
-            disabled={currentPage === 1}
-            onClick={() => setCurrentPage((prev) => prev - 1)}
-          >
-            Prev
-          </button>
-          <span>
-            Page {currentPage} of {totalPages}
-          </span>
-          <button
-            disabled={currentPage === totalPages}
-            onClick={() => setCurrentPage((prev) => prev + 1)}
-          >
-            Next
-          </button>
         </div>
       </main>
 
       <Footer />
-    </>
+    </div>
   );
 }

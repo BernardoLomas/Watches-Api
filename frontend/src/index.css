@@ -6,8 +6,8 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    background-color: #21232a;
-    color: #2f3640;
+    background-color: #262626;
+    color: #000000;
 }
 
 button {
@@ -19,12 +19,12 @@ button {
 /*Container da home*/
 .container {
     max-width: 1200px;
-    margin: 0 auto;
+    margin:  0 auto;
     padding: 24px 16px;
 }
 
 .navbar {
-    background: #2d3436;
+    background: #cdf0c4;
     color: #fff;
     padding: 16px;
     display: flex;
@@ -64,7 +64,7 @@ button {
 
 .card {
     background: #ffffff;
-    border-radius: 8px;
+    border-radius: 15px;
     padding: 16px;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     display: flex;
@@ -73,18 +73,18 @@ button {
 
 .card img {
     width: "100%";
-    height: 160px;
+    height: 200px;
     object-fit: cover;
-    border-radius: 8;
+    border-radius: 8px;
 }
 
 .card h3 {
-    margin-top: 8px;
+    margin-top: 15px;
     font-size: 16px;
 }
 
 .card p {
-    font-size: 14px;
+    font-size: 15px;
     color: #636e72;
     flex-grow: 1;
 }
@@ -93,11 +93,10 @@ button {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-top: 12px;
 }
 
 .card-footer button {
-    background-color: #407BFF;
+    background-color: #467b52;
     color: #fff;
     padding: 6px 12px;
     border-radius: 6px;
@@ -202,7 +201,7 @@ button {
 }
 
 .cart-item-qty {
-    color: #636e72;
+    color: #467b52;
 }
 
 .cart-item-actions {
@@ -268,7 +267,7 @@ button {
         transform: translateY(10px);
     }
     to {
-        oapcity: 1;
+        opacity: 1;
         transform: translateY(0);
     }
 }

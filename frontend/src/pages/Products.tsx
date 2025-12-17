@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { api } from "../api/http";
 import type { Product } from "../types/product";
+import { useCart } from "../context/CartContext";
 import ProductCard from "../components/ProductCard";
 import Checkout from "./Checkout";
 import CartSummary from "../components/CartSummary";
@@ -10,6 +11,7 @@ export default function Products() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [view, setView] = useState<"products" | "checkout">("products");
+  const { items } = useCart();
 
   useEffect(() => {
     let isMounted = true;
@@ -44,19 +46,28 @@ export default function Products() {
 
   return (
     <div className="container">
-      <div style={{ padding: 24 }}>
-        <h1>Products</h1>
-
-        <button onClick={() => setView("checkout")}>Go to checkout</button>
-
-        <div style={{ marginTop: 16 }}>
-          {products.map((product) => (
-            <ProductCard key={product.id} product={product} />
-          ))}
+      <nav className="navbar">
+        <strong>Bernardo Lomas Watches</strong>
+        <button className="cart-button" onClick={() => setView("checkout")}>
+          Cart ({items.length})
+        </button>
+      </nav>
+      <header className="filters-bar">
+        <div className="filters">
+          {/*Lembrar de coloadar os filtros de pesquisa aq depois*/}
         </div>
+      </header>
 
-        <CartSummary />
-      </div>
+      <section className="products-grid">
+        {products.map((product) => (
+          <ProductCard key={product.id} product={product} />
+        ))}
+      </section>
+
+      <footer className="footer">
+        <p>Bernardo Lomas Watches</p>
+        <small> React - NodeJs - Prisma - SQLite</small>
+      </footer>
     </div>
   );
 }

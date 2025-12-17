@@ -11,16 +11,9 @@ export default function ProductCard({ product }: Props) {
   return (
     <div className="card">
       {product.imageUrl && (
-        <img
+        <img className="card-image"
           src={product.imageUrl}
           alt={product.name}
-          style={{
-            width: "100%",
-            height: 160,
-            objectFit: "cover",
-            borderRadius: 8,
-            marginBottom: 8,
-          }}
         />
       )}
 

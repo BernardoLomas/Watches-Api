@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { api } from "../api/http";
 import type { Product } from "../types/product";
-import { useCart } from "../context/CartContext";
 import ProductCard from "../components/ProductCard";
 import Checkout from "./Checkout";
 import { useToast } from "../context/ToastContext";
@@ -13,7 +12,6 @@ export default function Products() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [view, setView] = useState<"products" | "checkout">("products");
-  const { items } = useCart();
   const { showToast } = useToast();
   const ITEMS_PER_PAGE = 12;
   const [currentPage, setCurrentPage] = useState(1);

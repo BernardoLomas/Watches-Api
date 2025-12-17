@@ -1,13 +1,12 @@
 import { useCart } from "../context/CartContext";
+import CartSummary from "../components/CartSummary";
 
 interface Props {
   onBack: () => void;
 }
 
 export default function Checkout({ onBack }: Props) {
-  const { items, checkout } = useCart();
-
-  const total = items.reduce((sum, item) => sum + item.subtotal, 0);
+  const { checkout, items } = useCart();
 
   async function handleCheckout() {
     try {
@@ -19,36 +18,20 @@ export default function Checkout({ onBack }: Props) {
     }
   }
 
+  if (items.length === 0) {
+    return <p>Your cart is empty</p>;
+  }
+
   return (
     <div className="container">
       <h1>Checkout</h1>
 
-      {items.length === 0 && <p>Your cart is empty</p>}
+      <CartSummary showRemove />
 
-      {items.length > 0 && (
-        <>
-          <div className="checkout-summary">
-            {items.map((item) => (
-              <div key={item.product.id} className="checkout-item">
-                <span>
-                  {item.product.name} x {item.quantity}
-                </span>
-                <span>R$ {item.subtotal.toFixed(2)}</span>
-              </div>
-            ))}
-          </div>
-
-          <div className="checkout-total">
-            <strong>Total:</strong>
-            <strong>R$ {total.toFixed(2)}</strong>
-          </div>
-
-          <div className="checkout-actions">
-            <button onClick={handleCheckout}>Confirm Order</button>
-            <button onClick={onBack}>Back</button>
-          </div>
-        </>
-      )}
+      <div className="checkout-actions">
+        <button onClick={handleCheckout}>Confirm Order</button>
+        <button onClick={onBack}>Back</button>
+      </div>
     </div>
   );
 }

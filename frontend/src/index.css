@@ -271,3 +271,24 @@ button {
         transform: translateY(0);
     }
 }
+
+/*CSS da paginacao*/
+.pagination {
+    margin-top: 32px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.pagination button {
+    padding: 6px 12px;
+    border-radius: 6px;
+    background: #2d3436;
+    color: #fff;
+}
+
+.pagination button:disabled {
+    background: #b2bec3;
+    cursor: not-allowed;
+}

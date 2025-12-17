@@ -14,6 +14,8 @@ export default function Products() {
   const [view, setView] = useState<"products" | "checkout">("products");
   const { items } = useCart();
   const { showToast } = useToast();
+  const ITEMS_PER_PAGE = 12;
+  const [currentPage, setCurrentPage] = useState(1);
 
   useEffect(() => {
     let isMounted = true;
@@ -42,10 +44,15 @@ export default function Products() {
     };
   }, []);
 
-  if (view === "checkout")
-    return <Checkout onBack={() => setView("products")} />;
+  if (view === "checkout") return <Checkout onBack={() => setView("products")} />;
   if (loading) return <div style={{ padding: 24 }}>Loading...</div>;
   if (error) return <div style={{ padding: 24 }}>Error: {error}</div>;
+
+  const totalPages = Math.ceil(products.length / ITEMS_PER_PAGE);
+  const paginatedProducts = products.slice(
+    (currentPage - 1) * ITEMS_PER_PAGE,
+    currentPage * ITEMS_PER_PAGE
+  );
 
   return (
     <div className="container">
@@ -62,10 +69,16 @@ export default function Products() {
       </header>
 
       <section className="products-grid">
-        {products.map((product) => (
+        {paginatedProducts.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </section>
+
+      <div className="pagination">
+        <button disabled={currentPage === 1} onClick={() => setCurrentPage(prev => prev - 1)}>Previous</button>
+        <span>Page {currentPage} of {totalPages}</span>
+        <button disabled={currentPage === totalPages} onClick={() => setCurrentPage(prev => prev + 1)}>Next</button>
+      </div>
 
       <footer className="footer">
         <p>Bernardo Lomas Watches</p>

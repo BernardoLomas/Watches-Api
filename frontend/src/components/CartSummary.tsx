@@ -19,7 +19,7 @@ export default function CartSummary({ showRemove = false }: Props) {
         <div key={item.product.id} className="cart-item">
           <div className="cart-item-info">
             <span className="cart-item-name">{item.product.name}</span>
-            <span className="cart-item-qty">x {item.quantity}</span>
+            <span className="cart-item-qty"> | Quantity: {item.quantity}</span>
           </div>
 
           <div className="cart-item-actions">

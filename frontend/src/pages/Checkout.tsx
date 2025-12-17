@@ -1,6 +1,8 @@
 import { useCart } from "../context/CartContext";
 import CartSummary from "../components/CartSummary";
 import { useToast } from "../context/ToastContext";
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 interface Props {
   onBack: () => void;
@@ -32,14 +34,17 @@ export default function Checkout({ onBack }: Props) {
 
   return (
     <div className="container">
+      <Navbar />
       <h1>Checkout</h1>
 
       <CartSummary showRemove />
 
       <div className="checkout-actions">
-        <button onClick={handleCheckout}>Confirm Order</button>
-        <button onClick={onBack}>Back</button>
+        <button className="finish-btn" onClick={handleCheckout}>Confirm Order</button>
+        <button className="back-btn" onClick={onBack}>Back</button>
       </div>
+
+      <Footer />
     </div>
   );
 }

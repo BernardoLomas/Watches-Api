@@ -4,7 +4,6 @@ import type { Product } from "../types/product";
 import { useCart } from "../context/CartContext";
 import ProductCard from "../components/ProductCard";
 import Checkout from "./Checkout";
-import CartSummary from "../components/CartSummary";
 
 export default function Products() {
   const [products, setProducts] = useState<Product[]>([]);

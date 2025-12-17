@@ -1,45 +1,54 @@
-import { useCart } from '../context/CartContext'
+import { useCart } from "../context/CartContext";
 
 interface Props {
-    onBack: () => void
+  onBack: () => void;
 }
 
 export default function Checkout({ onBack }: Props) {
-    const { items, checkout } = useCart()
+  const { items, checkout } = useCart();
 
-    const total = items.reduce((sum, item) => sum + item.subtotal, 0)
+  const total = items.reduce((sum, item) => sum + item.subtotal, 0);
 
-    async function handleCheckout() {
-        await checkout()
-        alert('Order succesfully placed!')
-        onBack()
+  async function handleCheckout() {
+    try {
+      await checkout();
+      alert("Order succesfully placed!");
+      onBack();
+    } catch {
+      alert("Failed to place order!");
     }
+  }
 
-    if(items.length === 0) {
-        return (
-            <div style={{ padding: 24 }}>
-                <p>Cart is empty!</p>
-                <button onClick={onBack}>Back</button>
-            </div>
-        )
-    }
+  return (
+    <div className="container">
+      <h1>Checkout</h1>
 
-    return (
-        <div style={{ padding: 24 }}>
-            <h1>Checkout</h1>
+      {items.length === 0 && <p>Your cart is empty</p>}
 
-            {items.map((item, index) => (
-                <div key={index}>
-                    {item.product.name} x {item.quantity}
-                </div>
+      {items.length > 0 && (
+        <>
+          <div className="checkout-summary">
+            {items.map((item) => (
+              <div key={item.product.id} className="checkout-item">
+                <span>
+                  {item.product.name} x {item.quantity}
+                </span>
+                <span>R$ {item.subtotal.toFixed(2)}</span>
+              </div>
             ))}
+          </div>
 
-            <strong>Total: R$ {total.toFixed(2)}</strong>
+          <div className="checkout-total">
+            <strong>Total:</strong>
+            <strong>R$ {total.toFixed(2)}</strong>
+          </div>
 
-            <div style={{ marginTop: 16 }}>
-                <button onClick={handleCheckout}>Finish order</button>
-                <button onClick={onBack} style={{ marginLeft: 8 }}>Back</button>
-            </div>
-        </div>
-    )
+          <div className="checkout-actions">
+            <button onClick={handleCheckout}>Confirm Order</button>
+            <button onClick={onBack}>Back</button>
+          </div>
+        </>
+      )}
+    </div>
+  );
 }

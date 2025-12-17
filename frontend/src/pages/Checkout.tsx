@@ -21,7 +21,13 @@ export default function Checkout({ onBack }: Props) {
   }
 
   if (items.length === 0) {
-    return <p>Your cart is empty</p>;
+    return (
+      <div className="container">
+        <h1>Checkout</h1>
+        <p>Your cart is empty</p>
+        <button className="back-btn" onClick={onBack}>Back to products</button>
+      </div>
+    );
   }
 
   return (

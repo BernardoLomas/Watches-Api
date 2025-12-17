@@ -31,13 +31,12 @@ h1 {
 .navbar {
     width: 100%;
     height: 100px;
-    background: #2d3436;
+    background: transparent;
     color: #fff;
     padding: 16px 32px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    border-bottom: 5px solid #467b52;
 }
 
 .navbar-brand {
@@ -52,6 +51,8 @@ h1 {
 }
 
 .navbar-cart {
+    position: absolute;
+    right: 32px;
     background: #467b52;
     color: #fff;
     padding: 6px 14px;
@@ -131,19 +132,23 @@ h1 {
 
 .footer {
   width: 100%;
-  padding: 32px;
-  text-align: center;
+  padding: 40px 32px;
   color: #636e72;
-  border-top: 4px solid #467b52;
 }
 
 .footer-content {
     max-width: 1400px;
     margin: 0 auto;
-    display: flex;
-    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 2fr 2fr;
+    align-items: start;
     gap: 32px;
     color: white;
+}
+
+.footer-profile {
+    display: flex;
+    justify-content: center;
 }
 
 .footer-profile img {
@@ -154,32 +159,55 @@ h1 {
 }
 
 .footer-info {
-    flex: 1;
+    text-align: justify;
+    font-size: 14px;
+    color: white;
 }
 
 .footer-info p {
-    font-size: 14px;
-    color: #ffffff;
+    margin-top: 6px;
 }
 
 .footer-stack {
-    max-width: 400px;
     font-size: 14px;
     color: #ffffff;
-    justify-content: left;
+    text-align: justify;
 }
 
-/*Responsividade*/
+.footer-stack p {
+    margin-top: 6px;
+    line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .footer-profile {
+        justify-content: flex-start;
+    }
+
+    .footer-profile img {
+        width: 70px;
+        height: 70px;
+    }
+}
+
+/*Responsividade Geral*/
 @media (min-width: 1600px) {
     .container {
         max-width: 1800px;
     }
 }
+
 @media (max-width: 1024px) {
     .products-grid {
         grid-template-columns: repeat(3, 1fr);
     }
 }
+
 
 @media (max-width: 768px) {
     .products-grid {
@@ -245,7 +273,7 @@ h1 {
 }
 
 .finish-btn {
-    background: #44bd32;
+    background-color: #467b52;
     color: #fff;
     padding: 10px 18px;
     border-radius: 6px;
@@ -254,7 +282,7 @@ h1 {
 
 .back-btn {
     background: transparent;
-    border: 1px solid #00ff5e;
+    border: 1px solid #467b52;
     color: #fcfdfd;
     padding: 10px 18px;
     border-radius: 6px;
@@ -336,6 +364,23 @@ h1 {
   font-size: 16px;
 }
 
+@media (max-width: 600px) {
+    .cart-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 6px;
+    }
+
+    .cart-item-actions {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .cart-total {
+        font-size: 15px;
+    }
+}
+
 
 /*Css do toast*/
 
@@ -382,12 +427,15 @@ h1 {
 .pagination button {
     padding: 6px 12px;
     border-radius: 6px;
-    background: #44bd32;
+    background: #262626;
+    border: 1px solid #467b52;
     color: #fff;
 }
 
 .pagination button:disabled {
-    background: #44bd32;
+    background: #262626;
+    border: 1px solid #467b52;
+    color: #fff;
     cursor: not-allowed;
 }
 

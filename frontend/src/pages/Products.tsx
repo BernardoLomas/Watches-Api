@@ -77,7 +77,7 @@ export default function Products() {
             disabled={currentPage === 1}
             onClick={() => setCurrentPage((prev) => prev - 1)}
           >
-            Previous
+            Prev
           </button>
           <span>
             Page {currentPage} of {totalPages}

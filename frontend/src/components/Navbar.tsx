@@ -13,7 +13,7 @@ export default function Navbar ({ onCartClick }: Props) {
             <div className="navbar-brand">
                 <img src={logo} alt="logo"></img>
             </div>
-            <button className="navbar-cart" onClick={onCartClick}>Cart({items.length})</button>
+            <button className="navbar-cart" onClick={onCartClick}>Cart ({items.length})</button>
         </nav>
     );
 }

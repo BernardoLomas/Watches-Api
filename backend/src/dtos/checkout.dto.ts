@@ -1,8 +1,5 @@
-export interface CheckoutItemDTO {
-    productId: number
-    quantity: number
-}
+import { ItemDTO } from './item.dto'
 
 export interface CheckoutDTO {
-    items: CheckoutItemDTO[]
+  items: ItemDTO[]
 }

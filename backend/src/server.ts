@@ -1,8 +1,8 @@
 import app from './app'
 
-const Porta = process.env.Porta || 3000
+const PORT = Number(process.env.PORT) || 3000
 
-app.listen(Porta, () =>{
-    console.log(`Servidor rodando na porta ${Porta}!`)
-    console.log(`http://localhost:3000`)
+app.listen(PORT, () =>{
+    console.log(`Server running on port ${PORT}!`)
+    console.log(`http://localhost:${PORT}`)
 })

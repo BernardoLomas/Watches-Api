@@ -1,4 +1,3 @@
-export interface CartItemDTO {
-    productId: number
-    quantity: number
-}
+import { ItemDTO } from "./item.dto";
+
+export type CartItemDTO = ItemDTO

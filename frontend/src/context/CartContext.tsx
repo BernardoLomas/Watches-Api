@@ -14,7 +14,7 @@ interface CartContextData {
   items: CartItem[];
   addToCart: (product: Product) => Promise<void>;
   checkout: () => Promise<void>;
-  removeFromCart: (productId: number) => void
+  removeFromCart: (productId: number) => void;
 }
 
 const CartContext = createContext<CartContextData | undefined>(undefined);
@@ -24,28 +24,59 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const { showToast } = useToast();
 
   async function addToCart(product: Product) {
-    try{
-      const response = await api.post("/cart/items", {
+    try {
+      const existing = items.find((i) => i.product.id === product.id);
+
+      if (existing) {
+        setItems((prev) =>
+          prev.map((item) =>
+            item.product.id === product.id
+              ? {
+                  ...item,
+                  quantity: item.quantity + 1,
+                  subtotal: (item.quantity + 1) * item.product.price,
+                }
+              : item
+          )
+        );
+        showToast("Item quantity updated!", "success");
+        return;
+      }
+
+      await api.post("/cart/items", {
         productId: product.id,
         quantity: 1,
       });
 
-      setItems((prev) => [...prev, response.data]);
+      setItems((prev) => [
+        ...prev,
+        {
+          product,
+          quantity: 1,
+          subtotal: product.price,
+        },
+      ]);
+
       showToast("Item added to cart!", "success");
     } catch {
-      showToast("Failed to add item into cart!", "error");
+      showToast("Failed to add item to cart!", "error");
     }
   }
 
   async function checkout() {
-    await api.post("/checkout", {
-      items: items.map((item) => ({
-        productId: item.product.id,
-        quantity: item.quantity,
-      })),
-    });
+    try {
+      await api.post("/checkout", {
+        items: items.map((item) => ({
+          productId: item.product.id,
+          quantity: item.quantity,
+        })),
+      });
 
-    setItems([]);
+      setItems([]);
+      showToast("Order placed successfully!", "success");
+    } catch {
+      showToast("Checkout failed!", "error");
+    }
   }
 
   function removeFromCart(productId: number) {
@@ -54,7 +85,9 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }
 
   return (
-    <CartContext.Provider value={{ items, addToCart, checkout, removeFromCart }}>
+    <CartContext.Provider
+      value={{ items, addToCart, checkout, removeFromCart }}
+    >
       {children}
     </CartContext.Provider>
   );

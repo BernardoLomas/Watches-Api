@@ -15,7 +15,6 @@ export default function Checkout({ onBack }: Props) {
   async function handleCheckout() {
     try {
       await checkout();
-      showToast("Order placed successfully!", "success");
       onBack();
     } catch {
       showToast("Checkout failed!", "error");

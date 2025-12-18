@@ -55,7 +55,7 @@ Organizado em camadas para garantir o **Single Responsibility Principle (SRP)**:
 
 ## 🚀 Como Executar
 
-### 1. Backend e banco de dados
+### 1. Backend, banco de dados e Swagger
 ```bash
 git clone https://github.com/BernardoLomas/POC-OrderSystem.git
 ```
@@ -69,18 +69,24 @@ npm install
 ```
 
 ```bash
-# Crie o .env com: DATABASE_URL="file:./prisma/dev.db"
+Crie o .env em backend/.env, depois:
+Digite: DATABASE_URL="file:./prisma/dev.db"
 ```
 
 ```bash
-npx prisma migrate dev
+npx prisma migrate dev --name init
 ```
 
 ```bash
 npm run dev
 ```
 
-### 2. Frontend
+```bash
+Backend: http://localhost:3000/api
+Swagger: http://localhost:3000/api/docs
+```
+
+### 3. Frontend
 ```bash
 cd frontend
 ```
@@ -90,9 +96,12 @@ npm install
 ```
 
 ```bash
-npm run dev - Aplicação rodando em: http://localhost:5173
+npm run dev
 ```
 
+```bash
+Abrir para testar a aplicação: http://localhost:5173
+```
 
 ## 🤖 Ferramentas de Apoio
 

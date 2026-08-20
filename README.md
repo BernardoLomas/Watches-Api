@@ -1,4 +1,4 @@
-# 🕒 Bernardo Lomas Watches — Online Ordering System
+# 🕒 Bernardo Lomas Watches - Online Ordering System
 
 
 **Aplicação Full Stack** de e-commerce de relógios desenvolvida como desafio técnico. O foco principal foi a entrega de um código limpo, arquitetura escalável e uma experiência de usuário (UX) fluida e responsiva.
